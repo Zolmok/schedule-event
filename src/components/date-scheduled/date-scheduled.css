@@ -1,0 +1,47 @@
+
+div.animate-schedule {
+  animation-duration: .5s;
+  animation-name: slidein;
+  display: block;
+}
+
+@keyframes slidein {
+  from {
+    top: 30px;
+  }
+
+  to {
+    top: 10px;
+  }
+}
+
+.card-schedule {
+  background-color: var(--gainsboro);
+  border-radius: var(--radius);
+  color: var(--gray);
+  display: none;
+  margin-right: 5px;
+  padding: 0 5px 1em;
+  position: relative;
+  top: 10px;
+}
+
+.card-body {
+  font-size: 1.1em;
+  margin: 0;
+}
+.card-title {
+  margin: 0;
+  padding: .75em 0 .5em;
+}
+.card-chosen {
+  color: var(--black);
+}
+
+.card-muted {
+  color: var(--light-gray);
+}
+
+p.show-time {
+  color: var(--black);
+}

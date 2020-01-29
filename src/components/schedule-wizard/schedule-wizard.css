@@ -1,0 +1,137 @@
+
+:root {
+  --card-width: 705px;
+  --radius: .25rem;
+  --black: rgb(0, 0, 0);
+  --muted-black: rgba(0, 0, 0, .5);
+  --blue: rgb(53, 145, 250);
+  --light-blue: rgba(53, 145, 250, .1);
+  --muted-blue: rgba(53, 145, 250, .5);
+  --dark-gray: rgb(135, 135, 135);
+  --gray: rgb(128, 128, 128);
+  --light-gray: rgb(169, 169, 169);
+  --dark-gainsboro: rgba(232, 232, 232, .5);
+  --gainsboro: rgba(232, 232, 232, .3);
+  --white: rgb(255, 255, 255);
+}
+
+body {
+  background-color: var(--white);
+  color: var(--black);
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.bottom {
+  margin-bottom: 25px;
+}
+
+button {
+  background-color: var(--gainsboro);
+  border: 1px solid var(--dark-gray);
+  border-radius: var(--radius);
+  box-shadow: none;
+  color: var(--blue);
+  padding: 10px;
+}
+
+button:disabled {
+  border: 1px solid var(--light-gray);
+  color: var(--muted-blue);
+}
+
+.primary {
+  background-color: var(--blue);
+  border: none;
+  color: var(--white);
+}
+
+.primary:disabled {
+  background-color: var(--muted-blue);
+  border: none;
+  color: var(--white);
+}
+
+.container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas:
+    'left right';
+  grid-template-columns: 250px 1fr;
+  margin: 0 auto;
+  position: relative;
+  top: 10px;
+  width: var(--card-width);
+}
+
+.footer {
+  border-top: 1px solid var(--dark-gainsboro);
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding-top: 20px;
+  width: var(--card-width);
+}
+
+.form-group {
+  margin: 0 0 1rem 0;
+}
+
+.info-heading {
+  color: var(--gray);
+  margin: 0;
+  padding: 0 0 .5em;
+}
+
+.heading {
+  color: var(--black);
+  font-size: 1.4em;
+  margin: 0;
+  padding: 0 0 1em;
+}
+
+label {
+  display: inline-block;
+}
+
+input {
+  background-color: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  display: block;
+  margin: 0;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+}
+
+.left {
+  border-right: 1px solid var(--dark-gainsboro);
+  grid-area: left;
+}
+
+.right {
+  grid-area: right;
+}
+
+.row-left {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.row-right {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag-duration {
+  background-color: var(--light-blue);
+  border-radius: var(--radius);
+  color: var(--blue);
+  display: initial;
+  padding: 5px;
+}

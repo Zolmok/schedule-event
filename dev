@@ -1,0 +1,19 @@
+#! /bin/sh
+
+if ! tmux has-session -t schedule-event
+then
+    tmux new-session -s schedule-event -n Server -d
+
+    # create moar windows
+    tmux new-window -t schedule-event:1 -n Zsh
+
+    # run the server in the first window
+    tmux send-keys -t schedule-event:0.0 'cd ~/dev/schedule-event && npm start' C-m
+
+    # just get to the proper path in the last window
+    tmux send-keys -t schedule-event:1.0 'cd ~/dev/schedule-event' C-m
+
+    # select the server window and pane
+    tmux select-window -t schedule-event:0.0
+fi
+tmux attach -t schedule-event

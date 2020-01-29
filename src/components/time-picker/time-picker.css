@@ -1,0 +1,32 @@
+
+.time-picker {
+  margin-top: 0;
+  padding-left: 0;
+  width: 150px;
+}
+
+.time-picker > li {
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius);
+  color: var(--blue);
+  list-style-type: none;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 10px 5px;
+  text-align: center;
+}
+
+.time-picker > li:not(:first-child) {
+  margin-top: 5px;
+}
+
+.time-picker > li:focus {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.time-picker-wrapper {
+  height: 420px;
+  margin-bottom: 12px;
+  overflow-y: scroll;
+}
