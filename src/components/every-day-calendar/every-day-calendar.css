@@ -1,0 +1,30 @@
+
+.DayPicker {
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+.DayPicker-Day {
+  border-radius: var(--radius);
+}
+
+.DayPicker-Day:focus {
+  background-color: var(--blue);
+  color: var(--white);
+}
+.DayPicker-Day:hover {
+  color: var(--blue);
+}
+
+.DayPicker-Day--today {
+  background-color: var(--light-blue);
+  color: var(--blue);
+}
+
+.DayPicker-NavButton--prev {
+  /* background-image: url(); */
+}
+
+.every-day-calendar > .info-heading {
+  margin-left: 30px;
+}

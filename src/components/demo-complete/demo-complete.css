@@ -1,0 +1,47 @@
+
+.appointment {
+  background-color: var(--gainsboro);
+  border-radius: var(--radius);
+  color: var(--gray);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+  padding: 5px;
+  position: relative;
+  top: 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+.check-icon {
+  background-color: var(--light-blue);
+  color: var(--blue);
+  margin: 1em auto;
+  margin-bottom: 0;
+}
+
+.container-full {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas: 'full';
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+  position: relative;
+  top: 10px;
+  width: var(--card-width);
+}
+
+.full {
+  grid-area: full;
+}
+
+.item {
+  text-align: left;
+  width: 352px;
+}
+
+.link {
+  border: none;
+}
