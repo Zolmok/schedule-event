@@ -2,8 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders schedule demo text', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const scheduleDemo = getByText(/schedule a demo/i);
+
+  expect(scheduleDemo).toBeInTheDocument();
 });

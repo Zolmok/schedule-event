@@ -3,12 +3,14 @@
   background-color: var(--gainsboro);
   border-radius: var(--radius);
   color: var(--gray);
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 2em;
   padding: 5px;
   position: relative;
   top: 10px;
+}
+.appointment-row {
+  display: flex;
+  justify-content: space-between;
 }
 
 .center {
@@ -37,6 +39,10 @@
   grid-area: full;
 }
 
+.info {
+  color: var(--gray);
+}
+
 .item {
   text-align: left;
   width: 352px;
@@ -44,4 +50,8 @@
 
 .link {
   border: none;
+}
+
+.schedule {
+  color: var(--black);
 }

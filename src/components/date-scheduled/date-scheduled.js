@@ -5,6 +5,24 @@ import React from "react";
 
 import "./date-scheduled.css";
 
+function DateScheduledDom(props) {
+  const {
+    renderSchedule,
+    dateSelected,
+    showTime,
+    timeSelected
+  } = props;
+
+  return (
+    <div className={renderSchedule.get()}>
+      <p className="card-title">DATE</p>
+      <p className="card-body card-chosen">{dateSelected}</p>
+      <p className="card-title">TIME</p>
+      <p className={showTime.get()}>{timeSelected}</p>
+    </div>
+  );
+}
+
 function DateScheduled() {
   const dateSelected = useSelector((state) => {
     return state.dateScheduledReducer.schedule.date;
@@ -23,14 +41,10 @@ function DateScheduled() {
     showTime.add('show-time');
   }
 
-  return (
-    <div className={renderSchedule.get()}>
-      <p className="card-title">DATE</p>
-      <p className="card-body card-chosen">{dateSelected}</p>
-      <p className="card-title">TIME</p>
-      <p className={showTime.get()}>{timeSelected}</p>
-    </div>
-  );
+  return <DateScheduledDom renderSchedule={renderSchedule}
+                           dateSelected={dateSelected}
+                           showTime={showTime}
+                           timeSelected={timeSelected} />;
 }
 
-export default DateScheduled;
+export {DateScheduled, DateScheduledDom};
