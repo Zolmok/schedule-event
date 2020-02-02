@@ -30,3 +30,6 @@
   margin-bottom: 12px;
   overflow-y: scroll;
 }
+.time-icker-wrapper::-webkit-scrollbar {
+  width: 6px;
+}

@@ -10,6 +10,16 @@ function handleClick(dispatch, time) {
   dispatch(updateTime(time.currentTarget.innerText));
 }
 
+function TimePickerDom(props) {
+  const {halfHours} = props;
+
+  return (
+    <div className="time-picker-wrapper">
+      <ul className="time-picker">{halfHours}</ul>
+    </div>
+  );
+}
+
 function TimePicker() {
   const begin = moment();
   const halfHours = [];
@@ -35,11 +45,7 @@ function TimePicker() {
     begin.add(30, 'm');
   }
 
-  return (
-    <div className="time-picker-wrapper">
-      <ul className="time-picker">{halfHours}</ul>
-    </div>
-  );
+  return <TimePickerDom halfHours={halfHours} />;
 }
 
-export default TimePicker;
+export {TimePicker, TimePickerDom};
