@@ -5,6 +5,7 @@ React: [Schedule Demo Exploration](https://dribbble.com/shots/9357635-Schedule-D
 
 You can see a demo of the site
 [here](https://zolmok.github.io/schedule-event/).
+
 ---
 
 <p align="center">
