@@ -34,4 +34,7 @@ a form button `onClick` event.  Jest doesn't seem to support
 `onSubmit` and when you click the button that seems to be the only
 thing it want's to fire.  Also I had to rework things a bit to get
 redux out of the way for some tests.  If you have any feedback on how
-to improve I would love to hear from you.
+to improve I would love to hear from you.  I've written a blog post
+about my efforts you can read
+[here](https://zolmok.org/posts/portfolio-schedule-event/) if you're
+interested.
