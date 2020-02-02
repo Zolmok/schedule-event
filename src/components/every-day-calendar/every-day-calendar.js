@@ -6,8 +6,9 @@ import {useDispatch} from 'react-redux';
 import DayPicker from "react-day-picker";
 import React from 'react';
 
-import "./every-day-calendar.css";
 import "react-day-picker/lib/style.css";
+import "./every-day-calendar.css";
+
 
 function handleDayClick(dispatch, day) {
   dispatch(updateDate(day));
