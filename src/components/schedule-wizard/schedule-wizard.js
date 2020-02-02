@@ -12,11 +12,16 @@ import {TimePicker} from '../time-picker/time-picker';
 
 import "./schedule-wizard.css";
 
+/**
+ * Advance to the next step of the wizard
+ *
+ * @param {Object} params - step state and email cached for the final step
+ */
 function onNext(params) {
   const {currentStep, setCurrentStep, setYourEmail} = params;
 
   if (currentStep > 1) {
-    if (currentStep === 2) {
+    if (currentStep === 2) { // e-mail form
       // validate email form
       const fields = document.querySelector('form').elements;
       const invalidFields = [].slice.call(fields).find((field) => {
@@ -28,16 +33,22 @@ function onNext(params) {
       });
 
       if (invalidFields) {
-        return; // stay on step 2
+        return; // stay on step 2, the e-mail form, until form is valid
       }
     }
 
-    setCurrentStep(3);
+    setCurrentStep(3); // final step, schedule complete
   } else {
     setCurrentStep(currentStep + 1);
   }
 }
 
+/**
+ * Move back to previous step of the wizard
+ *
+ * @param {Number} currentStep - step the wizard is currently on
+ * @param {Object} setCurrentStep - set the step of the wizard
+ */
 function onPrevious(currentStep, setCurrentStep) {
   if (currentStep <= 1) {
     setCurrentStep(1);
@@ -101,21 +112,23 @@ function ScheduleWizardDom(props) {
     </form>
   );
 
-  if (currentStep === 3) {
+  if (currentStep === 3) { // final step, confirmation screen
     currentForm = <DemoComplete setCurrentStep={setCurrentStep} yourEmail={yourEmail} />;
   }
 
   return currentForm;
 }
 
+/**
+ * A basic wizard to step through 3 states:
+ * 1) The initial scheduling screen, shows date and time pickers
+ * 2) Collect information screen to email schedule details
+ * 3) Final screen with confirmation information
+ */
 function ScheduleWizard() {
   const [currentStep, setCurrentStep] = useState(1);
   const [yourEmail, setYourEmail] = useState('');
-  const onNextCurried = () => onNext({
-    currentStep,
-    setCurrentStep,
-    setYourEmail
-  });
+  const onNextCurried = () => onNext({currentStep, setCurrentStep, setYourEmail});
   const onPreviousCurried = () => onPrevious(currentStep, setCurrentStep);
 
   let currentRightSide = [];
