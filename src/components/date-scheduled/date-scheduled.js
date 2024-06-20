@@ -1,17 +1,12 @@
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import ClassNames from '../class-names';
-import React from "react";
+import React from 'react';
 
-import "./date-scheduled.css";
+import './date-scheduled.css';
 
 function DateScheduledDom(props) {
-  const {
-    renderSchedule,
-    dateSelected,
-    showTime,
-    timeSelected
-  } = props;
+  const { renderSchedule, dateSelected, showTime, timeSelected } = props;
 
   return (
     <div className={renderSchedule.get()}>
@@ -31,8 +26,8 @@ function DateScheduled() {
     return state.dateScheduledReducer.schedule.time || 'Please select';
   });
 
-  let renderSchedule = new ClassNames('card-schedule');
-  let showTime = new ClassNames('card-body card-muted');
+  let renderSchedule = ClassNames('card-schedule');
+  let showTime = ClassNames('card-body card-muted');
 
   if (dateSelected) {
     renderSchedule.add('animate-schedule');
@@ -41,10 +36,14 @@ function DateScheduled() {
     showTime.add('show-time');
   }
 
-  return <DateScheduledDom renderSchedule={renderSchedule}
-                           dateSelected={dateSelected}
-                           showTime={showTime}
-                           timeSelected={timeSelected} />;
+  return (
+    <DateScheduledDom
+      renderSchedule={renderSchedule}
+      dateSelected={dateSelected}
+      showTime={showTime}
+      timeSelected={timeSelected}
+    />
+  );
 }
 
-export {DateScheduled, DateScheduledDom};
+export { DateScheduled, DateScheduledDom };

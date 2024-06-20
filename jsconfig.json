@@ -1,18 +1,14 @@
-
 {
-    "compilerOptions": {
-        "target": "es2017",
-        "allowSyntheticDefaultImports": true,
-        "noEmit": true,
-        "checkJs": true,
-        "jsx": "react",
-        "lib": [ "dom", "es2017" ]
-    },
-    "include": [
-        "src/**/*"
-    ],
-    "exclude": [
-        "build"
-    ]
+  "compilerOptions": {
+    "target": "es2017",
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "checkJs": true,
+    "jsx": "react",
+    "lib": ["dom", "es2017"],
+    "moduleResolution": "nodenext",
+    "types": ["mocha", "tests/**/*"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["build"]
 }
-

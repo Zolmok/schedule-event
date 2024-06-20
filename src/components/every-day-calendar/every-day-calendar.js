@@ -1,29 +1,25 @@
 import moment from 'moment';
 
-import {updateDate} from '../../actions/date-scheduled';
-import {useDispatch} from 'react-redux';
+import { updateDate } from '../../actions/date-scheduled';
+import { useDispatch } from 'react-redux';
 
-import DayPicker from "react-day-picker";
+import { DayPicker } from 'react-day-picker';
 import React from 'react';
 
-import "react-day-picker/lib/style.css";
-import "./every-day-calendar.css";
-
+import 'react-day-picker/dist/style.css';
+import './every-day-calendar.css';
 
 function handleDayClick(dispatch, day) {
   dispatch(updateDate(day));
 }
 
 function EveryDayCalendarDom(props) {
-  const {handleDayClick, monday} = props;
+  const { handleDayClick, monday } = props;
 
   return (
     <div className="every-day-calendar">
       <p className="info-heading">Select date and time</p>
-      <DayPicker
-        onDayClick={handleDayClick}
-        firstDayOfWeek={monday}
-      />
+      <DayPicker onDayClick={handleDayClick} firstDayOfWeek={monday} />
     </div>
   );
 }
@@ -37,7 +33,12 @@ function EveryDayCalendar() {
   };
   const monday = 1;
 
-  return <EveryDayCalendarDom handleDayClick={handleDayClickCurried} monday={monday} />;
+  return (
+    <EveryDayCalendarDom
+      handleDayClick={handleDayClickCurried}
+      monday={monday}
+    />
+  );
 }
 
-export {EveryDayCalendar, EveryDayCalendarDom};
+export { EveryDayCalendar, EveryDayCalendarDom };

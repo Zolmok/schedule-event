@@ -1,5 +1,3 @@
-/* global describe, expect, it */
-
 import ClassNames from './class-names';
 
 describe('ClassNames', () => {
