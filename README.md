@@ -1,10 +1,14 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Schedule Event
 
-I ran across an interesting UI that I wanted to try and replicate with
-React: [Schedule Demo Exploration](https://dribbble.com/shots/9357635-Schedule-Demo-Exploration).
+A React-based 3-step wizard demo for scheduling appointments. Users select a date, time, and enter contact information.
 
-You can see a demo of the site
-[here](https://zolmok.github.io/schedule-event/).
+**[Live Demo](https://zolmok.github.io/schedule-event/)**
+
+## Inspiration
+
+I ran across an interesting UI that I wanted to try and replicate with React: [Schedule Demo Exploration](https://dribbble.com/shots/9357635-Schedule-Demo-Exploration). My goal was to learn how React hooks worked as well as just do something fun.
+
+I've written a blog post about my efforts you can read [here](https://zolmok.org/posts/portfolio-schedule-event/) if you're interested.
 
 ---
 
@@ -26,15 +30,40 @@ You can see a demo of the site
 
 ---
 
-This is my attempt to recreate this project as best as I could with
-nothing but the animated gif as my guide.  My goal was to learn how
-React hooks worked as well as just do something fun.  I'm not happy
-with the tests I came up with.  There doesn't seem to be a way to test
-a form button `onClick` event.  Jest doesn't seem to support
-`onSubmit` and when you click the button that seems to be the only
-thing it want's to fire.  Also I had to rework things a bit to get
-redux out of the way for some tests.  If you have any feedback on how
-to improve I would love to hear from you.  I've written a blog post
-about my efforts you can read
-[here](https://zolmok.org/posts/portfolio-schedule-event/) if you're
-interested.
+## Tech Stack
+
+- React 18
+- Redux Toolkit with React-Redux
+- react-day-picker for calendar
+- Day.js for date handling
+- FontAwesome icons
+- Jest + React Testing Library for testing
+
+## Commands
+
+```bash
+npm install          # Install dependencies
+npm start            # Development server (localhost:3000)
+npm test             # Run tests (interactive watch mode)
+npm run test:coverage # Run tests with coverage
+npm run build        # Production build
+npm run lint         # Lint code
+npm run deploy       # Deploy to GitHub Pages
+```
+
+## Project Structure
+
+This is a 3-step wizard flow:
+
+1. **Date & Time Selection** - Pick a date from the calendar and select a time slot
+2. **Contact Information** - Enter your contact details
+3. **Confirmation** - Review and confirm the appointment
+
+### Key Components
+
+- `schedule-wizard/` - Main orchestrator managing the 3-step flow
+- `every-day-calendar/` - Date picker using react-day-picker
+- `time-picker/` - 24-hour time selection (30-min intervals)
+- `contact-form/` - User contact information form
+- `date-scheduled/` - Left panel showing selected date/time
+- `demo-complete/` - Confirmation screen
