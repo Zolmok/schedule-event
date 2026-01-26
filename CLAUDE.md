@@ -14,17 +14,25 @@ Schedule Event is a React-based 3-step wizard demo for scheduling appointments. 
 # Install dependencies
 npm install
 
-# Development server (http://localhost:3000)
+# Development server (http://localhost:5173)
 npm start
+# or
+npm run dev
 
-# Run tests (interactive watch mode)
+# Run tests (watch mode)
 npm test
+
+# Run tests once
+npm test -- --run
 
 # Run tests with coverage
 npm run test:coverage
 
 # Build for production
 npm run build
+
+# Preview production build
+npm run preview
 
 # Lint code
 npm run lint
@@ -58,12 +66,17 @@ Components export both connected and presentational versions for testability:
 
 ## Testing
 
-- Jest + React Testing Library for DOM testing
+- Vitest + React Testing Library for DOM testing
 - Redux-Mock-Store for Redux testing
-- Test files are co-located with components (`*.test.js`)
+- Test files are co-located with components (`*.test.jsx`)
 
 ## Code Style
 
 - Prettier with single quotes, 2-space indentation, semicolons
-- ESLint with react-app configuration
+- ESLint with React flat config
 - EditorConfig for consistent editor settings
+
+## Build Tool
+
+- Vite for development and production builds
+- Config in `vite.config.js`

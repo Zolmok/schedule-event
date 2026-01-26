@@ -34,21 +34,25 @@ I've written a blog post about my efforts you can read [here](https://zolmok.org
 
 - React 18
 - Redux Toolkit with React-Redux
+- Vite for development and builds
+- Vitest + React Testing Library for testing
 - react-day-picker for calendar
 - Day.js for date handling
 - FontAwesome icons
-- Jest + React Testing Library for testing
 
 ## Commands
 
 ```bash
-npm install          # Install dependencies
-npm start            # Development server (localhost:3000)
-npm test             # Run tests (interactive watch mode)
+npm install           # Install dependencies
+npm start             # Development server (localhost:5173)
+npm run dev           # Development server (alias)
+npm test              # Run tests (watch mode)
+npm test -- --run     # Run tests once
 npm run test:coverage # Run tests with coverage
-npm run build        # Production build
-npm run lint         # Lint code
-npm run deploy       # Deploy to GitHub Pages
+npm run build         # Production build
+npm run preview       # Preview production build
+npm run lint          # Lint code
+npm run deploy        # Deploy to GitHub Pages
 ```
 
 ## Project Structure

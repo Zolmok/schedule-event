@@ -1,10 +1,11 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 import { TimePickerDom } from './time-picker';
 
 test('renders time options', () => {
   const halfHours = ['12:00 am', '12:30 am', '1:00 am'];
-  const onTimeClick = jest.fn();
+  const onTimeClick = vi.fn();
   const { getByText } = render(
     <TimePickerDom halfHours={halfHours} onTimeClick={onTimeClick} />
   );
@@ -16,7 +17,7 @@ test('renders time options', () => {
 
 test('calls onTimeClick when time is clicked', () => {
   const halfHours = ['12:00 am', '12:30 am'];
-  const onTimeClick = jest.fn();
+  const onTimeClick = vi.fn();
   const { getByText } = render(
     <TimePickerDom halfHours={halfHours} onTimeClick={onTimeClick} />
   );
@@ -28,7 +29,7 @@ test('calls onTimeClick when time is clicked', () => {
 
 test('renders all time options with correct tabIndex', () => {
   const halfHours = ['12:00 am', '12:30 am'];
-  const onTimeClick = jest.fn();
+  const onTimeClick = vi.fn();
   const { getAllByRole } = render(
     <TimePickerDom halfHours={halfHours} onTimeClick={onTimeClick} />
   );

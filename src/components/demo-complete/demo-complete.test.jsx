@@ -1,5 +1,6 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import React from 'react';
+import { vi } from 'vitest';
 
 import { DemoCompleteDom } from './demo-complete';
 
@@ -8,8 +9,8 @@ describe('DemoComplete', () => {
 
   const defaultProps = {
     dateSelected: 'January 1, 2025',
-    onHome: jest.fn(),
-    onEmail: jest.fn(),
+    onHome: vi.fn(),
+    onEmail: vi.fn(),
     timeSelected: '2:30 pm',
     yourEmail: 'test@example.com',
   };
@@ -35,7 +36,7 @@ describe('DemoComplete', () => {
   });
 
   test('fires callback when home button clicked', () => {
-    const onHome = jest.fn();
+    const onHome = vi.fn();
     const { getByTestId } = render(
       <DemoCompleteDom {...defaultProps} onHome={onHome} />
     );
@@ -47,7 +48,7 @@ describe('DemoComplete', () => {
   });
 
   test('fires callback when resend email button clicked', () => {
-    const onEmail = jest.fn();
+    const onEmail = vi.fn();
     const { getByText } = render(
       <DemoCompleteDom {...defaultProps} onEmail={onEmail} />
     );

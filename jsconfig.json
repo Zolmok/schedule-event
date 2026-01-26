@@ -1,14 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "allowSyntheticDefaultImports": true,
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "noEmit": true,
-    "checkJs": true,
-    "jsx": "react",
-    "lib": ["dom", "es2017"],
-    "moduleResolution": "nodenext",
-    "types": ["mocha", "tests/**/*"]
+    "jsx": "react-jsx",
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["build"]
+  "include": ["src"],
+  "exclude": ["build", "dist", "node_modules"]
 }

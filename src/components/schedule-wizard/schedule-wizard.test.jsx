@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
+import { vi } from 'vitest';
 import { ScheduleWizardDom } from './schedule-wizard';
 
 test('renders schedule demo text', () => {
@@ -31,7 +32,7 @@ test('renders demo complete component', () => {
 });
 
 test('fires callback when onNext button clicked', () => {
-  const onNext = jest.fn();
+  const onNext = vi.fn();
   const DateScheduled = () => []; // stub this out because it depends on redux
   const DemoComplete = () => []; // stub this out because it depends on redux
   const { getByTestId } = render(

@@ -1,5 +1,6 @@
 import React from 'react';
 import { cleanup, render, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 import ContactForm from './contact-form';
 
 afterEach(cleanup);
@@ -7,7 +8,7 @@ afterEach(cleanup);
 const defaultFormData = { name: '', email: '', phone: '' };
 
 test('renders contact form fields', () => {
-  const onFieldChange = jest.fn();
+  const onFieldChange = vi.fn();
   const { queryByLabelText } = render(
     <ContactForm formData={defaultFormData} onFieldChange={onFieldChange} />
   );
@@ -21,7 +22,7 @@ test('renders contact form fields', () => {
 });
 
 test('calls onFieldChange when name input changes', () => {
-  const onFieldChange = jest.fn();
+  const onFieldChange = vi.fn();
   const { getByLabelText } = render(
     <ContactForm formData={defaultFormData} onFieldChange={onFieldChange} />
   );
@@ -33,7 +34,7 @@ test('calls onFieldChange when name input changes', () => {
 });
 
 test('calls onFieldChange when email input changes', () => {
-  const onFieldChange = jest.fn();
+  const onFieldChange = vi.fn();
   const { getByLabelText } = render(
     <ContactForm formData={defaultFormData} onFieldChange={onFieldChange} />
   );
@@ -45,7 +46,7 @@ test('calls onFieldChange when email input changes', () => {
 });
 
 test('calls onFieldChange when phone input changes', () => {
-  const onFieldChange = jest.fn();
+  const onFieldChange = vi.fn();
   const { getByLabelText } = render(
     <ContactForm formData={defaultFormData} onFieldChange={onFieldChange} />
   );
@@ -57,7 +58,7 @@ test('calls onFieldChange when phone input changes', () => {
 });
 
 test('displays controlled values', () => {
-  const onFieldChange = jest.fn();
+  const onFieldChange = vi.fn();
   const formData = { name: 'Jane', email: 'jane@test.com', phone: '555-5678' };
   const { getByLabelText } = render(
     <ContactForm formData={formData} onFieldChange={onFieldChange} />

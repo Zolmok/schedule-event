@@ -1,8 +1,8 @@
 {
   "name": "schedule-event",
   "version": "0.1.0",
-  "homepage": "https://zolmok.github.io/schedule-event/",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
@@ -14,51 +14,42 @@
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
-    "react-redux": "^9.1.2",
-    "react-scripts": "5.0.1"
+    "react-redux": "^9.1.2"
   },
   "scripts": {
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint src",
-    "test": "react-scripts test",
-    "test:coverage": "npm test -- --coverage --watchAll",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "eject": "react-scripts eject",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
     "updates": "ncu -u",
-    "postupdates": "npm install",
-    "predeploy": "npm run build"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "postupdates": "npm install"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@eslint/js": "^9.0.0",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
-    "@types/mocha": "^10.0.6",
     "@types/prop-types": "^15.7.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-redux": "^7.1.33",
-    "enzyme": "^3.11.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
     "gh-pages": "^6.1.1",
-    "mocha": "^10.4.0",
+    "globals": "^15.0.0",
+    "jsdom": "^24.0.0",
     "npm-check-updates": "^16.14.20",
-    "redux-mock-store": "^1.5.4"
+    "redux-mock-store": "^1.5.4",
+    "vite": "^5.2.0",
+    "vitest": "^1.4.0"
   }
 }
