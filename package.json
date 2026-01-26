@@ -26,9 +26,7 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "deploy": "gh-pages -d build",
-    "predeploy": "npm run build",
-    "updates": "ncu -u",
-    "postupdates": "npm install"
+    "predeploy": "npm run build"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
@@ -39,7 +37,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-redux": "^7.1.33",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "^5.1.2",
     "eslint": "^9.0.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^5.0.0",
@@ -47,9 +45,8 @@
     "gh-pages": "^6.1.1",
     "globals": "^15.0.0",
     "jsdom": "^24.0.0",
-    "npm-check-updates": "^16.14.20",
     "redux-mock-store": "^1.5.4",
-    "vite": "^5.2.0",
-    "vitest": "^1.4.0"
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18"
   }
 }
