@@ -7,6 +7,7 @@ import rootReducer from "./reducers/index";
 import "./normalize.css";
 import "./App.css";
 
+import ErrorBoundary from "./components/ErrorBoundary";
 import { ScheduleWizard } from "./components/schedule-wizard/schedule-wizard";
 
 const store = configureStore({
@@ -16,7 +17,9 @@ const store = configureStore({
 function App() {
   return (
     <Provider store={store}>
-      <ScheduleWizard />
+      <ErrorBoundary>
+        <ScheduleWizard />
+      </ErrorBoundary>
     </Provider>
   );
 }

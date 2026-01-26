@@ -1,46 +1,54 @@
 import { useSelector } from 'react-redux';
 
-import ClassNames from '../class-names';
-import React from 'react';
+import PropTypes from 'prop-types';
+import React, { useMemo, memo } from 'react';
+
+import { selectDate, selectTimeWithDefault } from '../../selectors/date-scheduled';
 
 import './date-scheduled.css';
 
-function DateScheduledDom(props) {
-  const { renderSchedule, dateSelected, showTime, timeSelected } = props;
-
+const DateScheduledDom = memo(function DateScheduledDom({
+  renderScheduleClass,
+  dateSelected,
+  showTimeClass,
+  timeSelected,
+}) {
   return (
-    <div className={renderSchedule.get()}>
+    <div className={renderScheduleClass}>
       <p className="card-title">DATE</p>
       <p className="card-body card-chosen">{dateSelected}</p>
       <p className="card-title">TIME</p>
-      <p className={showTime.get()}>{timeSelected}</p>
+      <p className={showTimeClass}>{timeSelected}</p>
     </div>
   );
-}
+});
+
+DateScheduledDom.propTypes = {
+  renderScheduleClass: PropTypes.string.isRequired,
+  dateSelected: PropTypes.string,
+  showTimeClass: PropTypes.string.isRequired,
+  timeSelected: PropTypes.string.isRequired,
+};
 
 function DateScheduled() {
-  const dateSelected = useSelector((state) => {
-    return state.dateScheduledReducer.schedule.date;
-  });
-  const timeSelected = useSelector((state) => {
-    return state.dateScheduledReducer.schedule.time || 'Please select';
-  });
+  const dateSelected = useSelector(selectDate);
+  const timeSelected = useSelector(selectTimeWithDefault);
 
-  let renderSchedule = ClassNames('card-schedule');
-  let showTime = ClassNames('card-body card-muted');
+  const renderScheduleClass = useMemo(
+    () => `card-schedule${dateSelected ? ' animate-schedule' : ''}`,
+    [dateSelected]
+  );
 
-  if (dateSelected) {
-    renderSchedule.add('animate-schedule');
-  }
-  if (timeSelected !== 'Please select') {
-    showTime.add('show-time');
-  }
+  const showTimeClass = useMemo(
+    () => `card-body card-muted${timeSelected !== 'Please select' ? ' show-time' : ''}`,
+    [timeSelected]
+  );
 
   return (
     <DateScheduledDom
-      renderSchedule={renderSchedule}
+      renderScheduleClass={renderScheduleClass}
       dateSelected={dateSelected}
-      showTime={showTime}
+      showTimeClass={showTimeClass}
       timeSelected={timeSelected}
     />
   );

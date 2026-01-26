@@ -1,61 +1,18 @@
-import {faArrowLeft, faClock} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {useSelector} from 'react-redux';
+import { faArrowLeft, faClock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSelector } from 'react-redux';
 
-import React, {useState} from "react";
+import PropTypes from 'prop-types';
+import React, { useState, useCallback } from 'react';
 
-import {DemoComplete} from '../demo-complete/demo-complete';
+import { DemoComplete } from '../demo-complete/demo-complete';
 import ContactForm from '../contact-form/contact-form';
-import {DateScheduled} from '../date-scheduled/date-scheduled';
-import {EveryDayCalendar} from '../every-day-calendar/every-day-calendar';
-import {TimePicker} from '../time-picker/time-picker';
+import { DateScheduled } from '../date-scheduled/date-scheduled';
+import { EveryDayCalendar } from '../every-day-calendar/every-day-calendar';
+import { TimePicker } from '../time-picker/time-picker';
+import { selectDate, selectTime } from '../../selectors/date-scheduled';
 
-import "./schedule-wizard.css";
-
-/**
- * Advance to the next step of the wizard
- *
- * @param {Object} params - step state and email cached for the final step
- */
-function onNext(params) {
-  const {currentStep, setCurrentStep, setYourEmail} = params;
-
-  if (currentStep > 1) {
-    if (currentStep === 2) { // e-mail form
-      // validate email form
-      const fields = document.querySelector('form').elements;
-      const invalidFields = [].slice.call(fields).find((field) => {
-        if (field.id === 'email') {
-          setYourEmail(field.value);
-        }
-
-        return field.validity.valid === false;
-      });
-
-      if (invalidFields) {
-        return; // stay on step 2, the e-mail form, until form is valid
-      }
-    }
-
-    setCurrentStep(3); // final step, schedule complete
-  } else {
-    setCurrentStep(currentStep + 1);
-  }
-}
-
-/**
- * Move back to previous step of the wizard
- *
- * @param {Number} currentStep - step the wizard is currently on
- * @param {Object} setCurrentStep - set the step of the wizard
- */
-function onPrevious(currentStep, setCurrentStep) {
-  if (currentStep <= 1) {
-    setCurrentStep(1);
-  } else {
-    setCurrentStep(currentStep - 1);
-  }
-}
+import './schedule-wizard.css';
 
 /**
  * Create a component itself without having to deal with redux for testing.
@@ -74,11 +31,11 @@ function ScheduleWizardDom(props) {
     onNext,
     onPrevious,
     setCurrentStep,
-    yourEmail
+    yourEmail,
   } = props;
 
   let currentForm = (
-    <form>
+    <form onSubmit={(e) => e.preventDefault()}>
       <div className="container">
         <div className="left">
           <div className="row-left">
@@ -94,30 +51,46 @@ function ScheduleWizardDom(props) {
             </div>
           </div>
         </div>
-        <div className="right">
-          {currentRightSide}
-        </div>
+        <div className="right">{currentRightSide}</div>
       </div>
       <div className="footer">
-        <button disabled={backButtonDisabled}
-                onClick={onPrevious}
-                type="button"><FontAwesomeIcon icon={faArrowLeft} /> Back</button>
-        <button className="primary"
-                data-testid="on-next"
-                disabled={nextButtonDisabled}
-                onClick={onNext}
-                tabIndex="15"
-                type="submit">Next Step</button>
+        <button disabled={backButtonDisabled} onClick={onPrevious} type="button">
+          <FontAwesomeIcon icon={faArrowLeft} /> Back
+        </button>
+        <button
+          className="primary"
+          data-testid="on-next"
+          disabled={nextButtonDisabled}
+          onClick={onNext}
+          tabIndex="15"
+          type="button"
+        >
+          Next Step
+        </button>
       </div>
     </form>
   );
 
-  if (currentStep === 3) { // final step, confirmation screen
+  if (currentStep === 3) {
+    // final step, confirmation screen
     currentForm = <DemoComplete setCurrentStep={setCurrentStep} yourEmail={yourEmail} />;
   }
 
   return currentForm;
 }
+
+ScheduleWizardDom.propTypes = {
+  backButtonDisabled: PropTypes.bool,
+  currentRightSide: PropTypes.node,
+  currentStep: PropTypes.number,
+  DateScheduled: PropTypes.elementType.isRequired,
+  DemoComplete: PropTypes.elementType.isRequired,
+  nextButtonDisabled: PropTypes.bool,
+  onNext: PropTypes.func,
+  onPrevious: PropTypes.func,
+  setCurrentStep: PropTypes.func,
+  yourEmail: PropTypes.string,
+};
 
 /**
  * A basic wizard to step through 3 states:
@@ -128,8 +101,44 @@ function ScheduleWizardDom(props) {
 function ScheduleWizard() {
   const [currentStep, setCurrentStep] = useState(1);
   const [yourEmail, setYourEmail] = useState('');
-  const onNextCurried = () => onNext({currentStep, setCurrentStep, setYourEmail});
-  const onPreviousCurried = () => onPrevious(currentStep, setCurrentStep);
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+
+  const dateSelected = useSelector(selectDate);
+  const timeSelected = useSelector(selectTime);
+
+  const handleFieldChange = useCallback((field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  }, []);
+
+  // Validate form from React state
+  const isFormValid =
+    formData.name &&
+    formData.email &&
+    formData.phone &&
+    /^[^@]+@[^@]+\.[^@]+$/.test(formData.email);
+
+  const onNext = useCallback(() => {
+    if (currentStep > 1) {
+      if (currentStep === 2) {
+        // e-mail form - validate from React state
+        if (!isFormValid) {
+          return; // stay on step 2 until form is valid
+        }
+        setYourEmail(formData.email);
+      }
+      setCurrentStep(3); // final step, schedule complete
+    } else {
+      setCurrentStep(currentStep + 1);
+    }
+  }, [currentStep, isFormValid, formData.email]);
+
+  const onPrevious = useCallback(() => {
+    if (currentStep <= 1) {
+      setCurrentStep(1);
+    } else {
+      setCurrentStep(currentStep - 1);
+    }
+  }, [currentStep]);
 
   let currentRightSide = [];
   let backButtonDisabled = true;
@@ -149,39 +158,35 @@ function ScheduleWizard() {
     case 2:
       currentRightSide = (
         <div className="row-right">
-          <ContactForm />
+          <ContactForm formData={formData} onFieldChange={handleFieldChange} />
         </div>
       );
       backButtonDisabled = false;
-      nextButtonDisabled = false;
+      nextButtonDisabled = !isFormValid;
       break;
 
     default:
       break;
   }
 
-  const dateSelected = useSelector((state) => {
-    return state.dateScheduledReducer.schedule.date;
-  });
-  const timeSelected = useSelector((state) => {
-    return state.dateScheduledReducer.schedule.time;
-  });
-
   if (dateSelected && timeSelected) {
     nextButtonDisabled = false;
   }
 
-  return <ScheduleWizardDom
-           backButtonDisabled={backButtonDisabled}
-           currentRightSide={currentRightSide}
-           currentStep={currentStep}
-           DateScheduled={DateScheduled}
-           DemoComplete={DemoComplete}
-           nextButtonDisabled={nextButtonDisabled}
-           onNext={onNextCurried}
-           onPrevious={onPreviousCurried}
-           setCurrentStep={setCurrentStep}
-           yourEmail={yourEmail} />;
+  return (
+    <ScheduleWizardDom
+      backButtonDisabled={backButtonDisabled}
+      currentRightSide={currentRightSide}
+      currentStep={currentStep}
+      DateScheduled={DateScheduled}
+      DemoComplete={DemoComplete}
+      nextButtonDisabled={nextButtonDisabled}
+      onNext={onNext}
+      onPrevious={onPrevious}
+      setCurrentStep={setCurrentStep}
+      yourEmail={yourEmail}
+    />
+  );
 }
 
-export {ScheduleWizard, ScheduleWizardDom};
+export { ScheduleWizard, ScheduleWizardDom };

@@ -1,15 +1,56 @@
 import React from 'react';
-import {render} from '@testing-library/react';
-import {DateScheduledDom} from './date-scheduled';
+import { render } from '@testing-library/react';
+import { DateScheduledDom } from './date-scheduled';
 
-test('renders date selected demo text', () => {
+test('renders date selected text', () => {
   const dateSelected = 'date-selected-test';
-  const renderSchedule = {get: jest.fn()};
-  const showTime = {get: jest.fn()};
-  const {getByText} = render(<DateScheduledDom dateSelected={dateSelected}
-                                               renderSchedule={renderSchedule}
-                                               showTime={showTime} />);
-  const chosenTime = getByText(dateSelected);
+  const renderScheduleClass = 'card-schedule';
+  const showTimeClass = 'card-body card-muted';
+  const timeSelected = 'Please select';
+  const { getByText } = render(
+    <DateScheduledDom
+      dateSelected={dateSelected}
+      renderScheduleClass={renderScheduleClass}
+      showTimeClass={showTimeClass}
+      timeSelected={timeSelected}
+    />
+  );
+  const chosenDate = getByText(dateSelected);
+
+  expect(chosenDate).toBeInTheDocument();
+});
+
+test('renders time selected text', () => {
+  const dateSelected = 'January 1, 2025';
+  const renderScheduleClass = 'card-schedule animate-schedule';
+  const showTimeClass = 'card-body card-muted show-time';
+  const timeSelected = '2:30 pm';
+  const { getByText } = render(
+    <DateScheduledDom
+      dateSelected={dateSelected}
+      renderScheduleClass={renderScheduleClass}
+      showTimeClass={showTimeClass}
+      timeSelected={timeSelected}
+    />
+  );
+  const chosenTime = getByText(timeSelected);
 
   expect(chosenTime).toBeInTheDocument();
+});
+
+test('applies animate-schedule class when date is selected', () => {
+  const dateSelected = 'January 1, 2025';
+  const renderScheduleClass = 'card-schedule animate-schedule';
+  const showTimeClass = 'card-body card-muted';
+  const timeSelected = 'Please select';
+  const { container } = render(
+    <DateScheduledDom
+      dateSelected={dateSelected}
+      renderScheduleClass={renderScheduleClass}
+      showTimeClass={showTimeClass}
+      timeSelected={timeSelected}
+    />
+  );
+
+  expect(container.firstChild).toHaveClass('animate-schedule');
 });
