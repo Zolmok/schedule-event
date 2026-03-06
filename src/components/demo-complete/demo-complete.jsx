@@ -1,5 +1,4 @@
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { CheckCircle } from 'lucide-react';
 import { useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
@@ -24,7 +23,7 @@ const DemoCompleteDom = memo(function DemoCompleteDom({
 }) {
   return (
     <div className="container-full center">
-      <FontAwesomeIcon className="check-icon fa-3x" icon={faCheckCircle} />
+      <CheckCircle className="check-icon" size={48} />
       <form onSubmit={(e) => e.preventDefault()}>
         <h2>We just scheduled a demo for you</h2>
         <p className="info">

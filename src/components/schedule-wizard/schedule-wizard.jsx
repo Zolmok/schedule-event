@@ -1,9 +1,8 @@
-import { faArrowLeft, faClock } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ArrowLeft, Clock } from 'lucide-react';
 import { useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
-import React, { useState, useCallback } from 'react';
+import React, { memo, useState, useCallback } from 'react';
 
 import { DemoComplete } from '../demo-complete/demo-complete';
 import ContactForm from '../contact-form/contact-form';
@@ -20,7 +19,7 @@ import './schedule-wizard.css';
  * > In order to be able to test the App component itself without having to deal with the decorator,
  * > we recommend you to also export the undecorated component
  */
-function ScheduleWizardDom(props) {
+const ScheduleWizardDom = memo(function ScheduleWizardDom(props) {
   const {
     backButtonDisabled,
     currentRightSide,
@@ -43,7 +42,7 @@ function ScheduleWizardDom(props) {
               <p className="info-heading">Walkthrough</p>
               <p className="heading">Schedule a demo</p>
               <div className="tag-duration">
-                <FontAwesomeIcon icon={faClock} /> <span>10-20min</span>
+                <Clock size={14} /> <span>10-20min</span>
               </div>
             </div>
             <div className="bottom">
@@ -54,9 +53,13 @@ function ScheduleWizardDom(props) {
         <div className="right">{currentRightSide}</div>
       </div>
       <div className="footer">
-        <button disabled={backButtonDisabled} onClick={onPrevious} type="button">
-          <FontAwesomeIcon icon={faArrowLeft} /> Back
-        </button>
+        {backButtonDisabled ? (
+          <span />
+        ) : (
+          <button onClick={onPrevious} type="button">
+            <ArrowLeft size={14} /> Back
+          </button>
+        )}
         <button
           className="primary"
           data-testid="on-next"
@@ -77,7 +80,7 @@ function ScheduleWizardDom(props) {
   }
 
   return currentForm;
-}
+});
 
 ScheduleWizardDom.propTypes = {
   backButtonDisabled: PropTypes.bool,
