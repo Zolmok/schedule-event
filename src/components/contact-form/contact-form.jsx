@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo } from 'react';
 
 import './contact-form.css';
 
-function ContactForm({ formData, onFieldChange }) {
+const ContactForm = memo(function ContactForm({ formData, onFieldChange }) {
   return (
     <div>
       <p className="info-heading">Enter your information</p>
@@ -47,7 +47,7 @@ function ContactForm({ formData, onFieldChange }) {
       </div>
     </div>
   );
-}
+});
 
 ContactForm.propTypes = {
   formData: PropTypes.shape({

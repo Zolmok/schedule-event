@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
-import React, { useCallback, useMemo } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 
 import './time-picker.css';
 
-function TimePickerDom({ halfHours, onTimeClick }) {
+const TimePickerDom = memo(function TimePickerDom({ halfHours, onTimeClick }) {
   return (
     <div className="time-picker-wrapper">
       <ul className="time-picker" onClick={onTimeClick}>
@@ -19,7 +19,7 @@ function TimePickerDom({ halfHours, onTimeClick }) {
       </ul>
     </div>
   );
-}
+});
 
 TimePickerDom.propTypes = {
   halfHours: PropTypes.arrayOf(PropTypes.string).isRequired,
