@@ -9,6 +9,7 @@
   border: 1px solid var(--light-gray);
   border-radius: var(--radius);
   color: var(--blue);
+  cursor: pointer;
   list-style-type: none;
   margin-left: 5px;
   margin-right: 5px;
@@ -30,6 +31,6 @@
   margin-bottom: 12px;
   overflow-y: scroll;
 }
-.time-icker-wrapper::-webkit-scrollbar {
+.time-picker-wrapper::-webkit-scrollbar {
   width: 6px;
 }

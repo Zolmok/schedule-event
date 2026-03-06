@@ -33,6 +33,7 @@ button {
   border-radius: var(--radius);
   box-shadow: none;
   color: var(--blue);
+  cursor: pointer;
   padding: 10px;
 }
 
